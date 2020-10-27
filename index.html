@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <style>
+        #usd-value {
+            pointer-events: none;
+        }
+    </style>
     <title>Hitung CIF</title>
 </head>
 <body>
-    <p>Masukkan USD to IDR terbaru</p>
-    <input id="usd-value" type="number" value="14768">
+    <p>Masukkan Kurs Fiskal USD 
+        <a href="https://fiskal.kemenkeu.go.id/informasi-publik/kurs-pajak" target="_blank">cek fiskal</a></p> 
+    <input id="usd-value" type="number">
+    <button id="ganti">Ganti USD</button>
     <p>Masukkan CIF</p>
     <input id="cif" type="number" onfocus="this.value=''">
     <br>
