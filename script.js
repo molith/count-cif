@@ -29,8 +29,31 @@ function count() {
     let addCommas = rounded.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     result.innerHTML = `
         <p><strong>CIF = ${cif}</strong><p>
-        <p><strong>Rp. ${addCommas}</strong></p>`
+        <p><strong>Rp. ${addCommas}</strong>
+        <button id="copy">COPY</button></p>`
     cif1.focus();
+
+    async function copy() {
+        try {
+          await navigator.clipboard.writeText(rounded);
+          console.log('Harga disalin');
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      }
+    
+    document.addEventListener("keydown", function (e) {
+    if (!gantiState){
+        if (e.key == 'C' || e.code == 'KeyC') {
+            copy();
+        }
+    }
+});
+      
+    const salin = document.querySelector('#copy');
+    salin.addEventListener("click", () => {
+        copy();
+    })
 }
 
 counter.addEventListener("click", () => {
@@ -44,7 +67,13 @@ document.addEventListener("keydown", function (e) {
             let cif = document.querySelector('#cif');
             counter.focus();
             cif.focus();
-        } else {
+        }
+
+        if (e.key == 'C' || e.code == 'KeyC') {
+            return;
+        }
+
+        else {
             let cif = document.querySelector('#cif');
             cif.focus();
         }
