@@ -54,6 +54,11 @@ function count() {
     salin.addEventListener("click", () => {
         copy();
     })
+
+    const notes = document.getElementById('notes');
+    notes.innerHTML = `
+    <p>*Klik COPY atau tekan tombol "C" pada keyboard </br>
+    untuk menyalin harga penyerahan</p>`
 }
 
 counter.addEventListener("click", () => {
