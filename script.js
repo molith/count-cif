@@ -67,7 +67,7 @@ function count() {
 
     async function copyDiskon() {
         try {
-          await navigator.clipboard.writeText(countDiskon);
+          await navigator.clipboard.writeText(roundedDiskon);
           console.log('Harga disalin');
         } catch (err) {
           console.error('Failed to copy: ', err);
