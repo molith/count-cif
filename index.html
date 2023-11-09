@@ -7,19 +7,30 @@
         #usd-value {
             pointer-events: none;
         }
+        #diskon {
+            pointer-events: none;
+        }
     </style>
     <title>Hitung CIF</title>
 </head>
 <body>
     <p>Masukkan Kurs Fiskal USD 
         <a href="https://fiskal.kemenkeu.go.id/informasi-publik/kurs-pajak" target="_blank">cek fiskal</a></p> 
-    <input id="usd-value" type="number" value="14249" onfocus="this.value=''">
+    <input id="usd-value" type="number" value="15879" onfocus="this.value=''">
     <button id="ganti">Ganti USD</button>
+
+    <p>Masukkan Diskon (cukup input angka persennya tanpa tanda %)</p>
+    <input id="diskon" type="text" value="0" onfocus="this.value=''">
+    <button id="gantiDiskon">Ganti Diskon</button>
+    
     <p>Masukkan CIF</p>
     <input id="cif" type="number" onfocus="this.value=''">
+    
+    
     <br>
     <br>
     <button id="count">Hitung!</button>
+    <p>*Klik atau bisa dengan tombol ENTER</p>
     <div id="result"></div>
     <div id="notes"></div>
     <script src="script.js"></script>
