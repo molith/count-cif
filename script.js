@@ -53,7 +53,8 @@ function count() {
         <p><strong>Harga Penyerahan Rp. ${addCommas}</strong>
         <button id="copy">COPY</button></p>
         <p><strong>Diskon Rp. ${perfectDiskon}</strong>
-        <button id="copy2">COPY</button></p>`
+        <button id="copy2">COPY</button></p>
+        <p>*Klik COPY atau SALIN untuk menyalin nilai</p>`
     cif1.focus();
 
     async function copy() {
