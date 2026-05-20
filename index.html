@@ -314,4 +314,85 @@
 
         if (selectedOpt === 'custom') {
             diskon = parseFloat(document.getElementById('diskon_custom').value) || 0;
+        } else {
+            diskon = parseFloat(selectedOpt);
         }
+
+        if (cif === 0) {
+            document.getElementById('result-section').style.display = 'none';
+            return;
+        }
+
+        const hargaPenyerahan = cif * kurs;
+        const nilaiDiskon = hargaPenyerahan * (diskon / 100);
+
+        const formatNumber = (num) => {
+            return new Intl.NumberFormat('en-US', { 
+                minimumFractionDigits: 2, 
+                maximumFractionDigits: 2 
+            }).format(num);
+        };
+
+        document.getElementById('outCif').innerText = cif;
+        document.getElementById('outHarga').innerText = formatNumber(hargaPenyerahan);
+        document.getElementById('outDiskon').innerText = formatNumber(nilaiDiskon);
+
+        // Menampilkan dengan animasi sangat sederhana
+        document.getElementById('result-section').style.display = 'block';
+    }
+
+    function pilihCustomDanHitung() {
+        document.getElementById('rad_custom').checked = true;
+        hitung();
+    }
+
+    document.getElementById('diskon_custom').addEventListener('input', pilihCustomDanHitung);
+    document.getElementById('diskon_custom').addEventListener('focus', pilihCustomDanHitung);
+
+    // FITUR OTOMATIS KE KOTAK CIF SAAT KEYBOARD DIKETIK
+    window.addEventListener('keydown', function(e) {
+        const active = document.activeElement;
+        
+        if (active.id === 'kurs' || active.id === 'diskon_custom') {
+            return;
+        }
+
+        if (active.id !== 'cif') {
+            if ((e.key >= '0' && e.key <= '9') || e.key === '.' || e.key === ',' || e.key === 'Backspace') {
+                const cifInput = document.getElementById('cif');
+                cifInput.focus();
+            }
+        }
+    });
+
+    document.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            hitung();
+        }
+    });
+
+    // Fungsi Tombol Copy
+    function copyText(elementId) {
+        const textToCopy = document.getElementById(elementId).innerText;
+        const rawNumber = textToCopy.replace(/,/g, ''); 
+
+        navigator.clipboard.writeText(rawNumber).then(() => {
+            // Animasi ganti teks sementara menjadi "COPIED!"
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "COPIED!";
+            btn.style.backgroundColor = "#059669"; // warna sukses yang lebih gelap
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = ""; // kembali ke warna asal
+            }, 1500);
+
+        }).catch(err => {
+            alert("Gagal menyalin teks.");
+        });
+    }
+</script>
+
+    </body>
+</html>
